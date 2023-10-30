@@ -58,111 +58,98 @@ What falls outside of the project's scope for the moment:
 
 **Description:**
 
-The visitor arrives at the homepage of the personal library application.
-On the homepage, the visitor can see a collection of featured books displayed.
-Each featured book includes a book cover image, title, author, and a brief description.
-The visitor can click on any featured book to view its details.
-Clicking on a featured book redirects the visitor to the book's details page, where they can see more information about the book.
-The visitor can navigate back to the homepage to explore other featured books or continue browsing.
-Use Case 2: Registering as a New User
+1. The visitor arrives at the homepage of the personal library application.
+2. On the homepage, the visitor can see a collection of featured books displayed.
+3. Each featured book includes a book cover image, title, author, and a brief description.
+4. The visitor can click on any featured book to view its details.
+5. Clicking on a featured book redirects the visitor to the book's details page, where they can see more information about the book.
+6. The visitor can navigate back to the homepage to explore other featured books or continue browsing.
 
-Actors: Visitor
+### Use Case 2: Registering as a New User
 
-Description:
+**Actors:** Visitor
 
-The visitor arrives at the homepage of the personal library application.
-The visitor sees a "Sign Up" or "Register" button in the application's navigation menu.
-The visitor clicks on the "Sign Up" or "Register" button.
-The system displays a registration form that prompts the visitor to enter the following information:
-Full Name
-Email Address
-Password
-Confirm Password
-The visitor enters their details into the registration form.
-The system validates the information, checking for proper email format and password matching.
-If the validation is successful, the visitor is registered as a new user, and an account is created.
-The system redirects the newly registered user to their dashboard or a welcome page.
-The visitor is now a registered user and can access the full functionality of the application, including features like searching for books, adding books to their library, and managing their reading progress.
+**Description:**
 
-**Use Case :** Searching for New Books
+1. The visitor arrives at the homepage of the personal library application.
+2. The visitor sees a "Sign Up" or "Register" button in the application's navigation menu.
+3. The visitor clicks on the "Sign Up" or "Register" button.
+4. The system displays a registration form that prompts the visitor to enter the following information:
+    * Full Name
+    * Email Address
+    * Password
+    * Confirm Password
+5. The visitor enters their details into the registration form.
+6. The system validates the information, checking for proper email format and password matching.
+7. If the validation is successful, the visitor is registered as a new user, and an account is created.
+8. The system redirects the newly registered user to their dashboard or a welcome page.
+9. The visitor is now a registered user and can access the full functionality of the application, including features like searching for books, adding books to their library, and managing their reading progress.
+
+## Use Case 3: Searching and Adding a Book to the Library
 
 **Actors:** Registered User
 
 **Description:**
 
 1. The registered user logs in to the application.
-2. Once logged in, the user is directed to their dashboard.
-3. The user clicks on the "Add new" button in the dashboard.
-4. A search bar appears, allowing the user to enter book titles, author names, or ISBN numbers.
-5. The user enters the title of a book they want to find and clicks the "Search" button.
-6. The system queries an external book database for matching books and displays the search results on a new page.
-7. The user can click on a book from the search results to view detailed information about the book.
-8. The user can add the book to their library or return to the search results.
+2. The user searches for a specific book using the search functionality.
+3. The search results are displayed, and the user selects the desired book from the results.
+4. On the book's details page, the user clicks an "Add to Library" button.
+5. The user is prompted to categorize the book as "unread," "read," or "currently reading."
+6. The book is added to the user's personal library with the chosen status.
+7. If the book is marked 'read', the user has the option of leaving a rating before adding it to their library.
+8. If the book is marked 'currently reading', the reader has the option of updating the reading progress.
 
-Use Case Title: Rating and Reviewing a Book
+## Use Case 4: Viewing Books in Library
 
-Actors: Registered User
+**Actors:** Registered User
 
-Description:
+**Description:**
+1. The registered user logs in to the application.
+2. The user sees a dashboard that lists all the books in their library.
+3. The user can organise their library by title, author, rating, category, genre, etc.
+    * The default sorting is "currently reading" at the top, "unread" second and "read third". Each category is presented alphabetically by author by default.
+4. The user is able to search their collection, add a new book, leave reviews for read books and update "currently reading" progress.
 
-The registered user logs in to the application.
-The user navigates to their personal library.
-In the library, the user selects a book they've read.
-The user clicks on the book to view its details.
-On the book's details page, the user can see the book's information, including the title, author, and description.
-The user has the option to rate the book on a scale of 1 to 5 stars.
-The user can also write a review for the book, providing comments and feedback.
-After rating and reviewing, the user can save their changes.
-Use Case Title: Adding a Book to the Library
 
-Actors: Registered User
+## Use Case 5: Updating Reading Progress
 
-Description:
+**Actors:** Registered User
 
-The registered user logs in to the application.
-The user searches for a specific book using the search functionality.
-The search results are displayed, and the user selects the desired book from the results.
-On the book's details page, the user clicks an "Add to Library" button.
-The user is prompted to categorize the book as "unread," "read," or "currently reading."
-The user can also specify the progress if the book is "currently reading."
-The book is added to the user's personal library with the chosen status.
-Use Case Title: Updating Reading Progress
+**Description:**
 
-Actors: Registered User
+1. The registered user logs in to the application.
+2. The user goes to their personal library.
+3. In the library, the user selects a book marked as "currently reading."
+4. The user clicks on the book to view its details.
+5. On the book's details page, the user can see their reading progress, such as the page number or percentage completed.
+6. The user can update the progress by entering a new page number or percentage and saving the changes.
 
-Description:
+## Use Case 6: Rating and Reviewing a Book
 
-The registered user logs in to the application.
-The user goes to their personal library.
-In the library, the user selects a book marked as "currently reading."
-The user clicks on the book to view its details.
-On the book's details page, the user can see their reading progress, such as the page number or percentage completed.
-The user can update the progress by entering a new page number or percentage and saving the changes.
-Use Case Title: Searching for Books
+**Actors:** Registered User
 
-Actors: Registered User
+**Description:**
 
-Description:
+1. The registered user logs in to the application.
+2. The user navigates to their personal library.
+3. In the library, the user selects a book they've read.
+4. The user clicks on the book to view its details.
+5. On the book's details page, the user can see the book's information, including the title, author, and description.
+6. The user has the option to rate the book on a scale of 1 to 5 stars.
+7. After rating and reviewing, the user can save their changes.
 
-The registered user logs in to the application.
-The user navigates to their dashboard.
-In the dashboard, the user clicks on the "Search" button.
-A search bar appears, allowing the user to enter keywords, book titles, author names, or ISBN numbers.
-The user enters the search query and clicks the "Search" button.
-The system queries the database for matching books and displays the search results on a new page.
-The user can click on a book from the search results to view detailed information about the book.
-The user can add the book to their library or return to the search results.
-Use Case Title: Logging Out
+## Use Case 7: Logging Out
 
-Actors: Registered User
+**Actors:** Registered User
 
-Description:
+**Description:**
 
-The registered user is logged in to the application.
-The user navigates to their account settings or profile page.
-In the settings or profile page, the user finds a "Log Out" or "Sign Out" button.
-The user clicks the "Log Out" button.
-The system logs the user out and redirects them to the login page.
+1. The registered user is logged in to the application.
+2. The user navigates to their account settings or profile page.
+3. In the settings or profile page, the user finds a "Log Out" or "Sign Out" button.
+4. The user clicks the "Log Out" button.
+5. The system logs the user out and redirects them to the login page.
 
 ## TODO: Write Learning Journey
 
