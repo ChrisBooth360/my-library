@@ -11,18 +11,18 @@ const router = express.Router();
 router.get('/', getBooks)
 
 // GET one book
-router.get('/:id', getBook)
+router.get('/:isbn', getBook)
 
 // POST new book
 router.post('/', addBook)
 
 // UPDATE book
-router.patch('/:id', (req, res) => {
+router.patch('/:isbn', (req, res) => {
     res.json({mssg: "UPDATE book"})
 })
 
 // DELETE book
-router.delete('/:id', (req, res) => {
+router.delete('/:isbn', (req, res) => {
     res.json({mssg: "DELETE book"})
 })
 

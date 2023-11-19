@@ -10,15 +10,15 @@ const getBooks = async (req, res) => {
 
 //Get single book
 const getBook = async (req, res) => {
-    const { id } = req.params
+    const { isbn } = req.params
 
-    if(!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({error: "No such book"})
-    }
+    // if(!mongoose.Types.ObjectId.isValid(isbn)){
+    //     return res.status(404).json({error: "No such book"})
+    // }
 
-    const book = await Book.findById(id)
+    const book = await Book.findOne({ isbn: isbn });
 
-    if(!book) {
+    if(null) {
         return res.status(400).json({error: "No such book"})
     }
     res.status(200).json(book)

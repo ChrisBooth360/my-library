@@ -4,6 +4,8 @@ const axios = require('axios');
 
 const GOOGLE_BOOKS_API_KEY = process.env.GB_API_KEY;
 
+console.log(GOOGLE_BOOKS_API_KEY)
+
 router.get('/search/:isbn', async (req, res) => {
   const { isbn } = req.params;
 
