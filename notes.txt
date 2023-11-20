@@ -1,0 +1,13 @@
+{   
+    isbn: isbn,
+    title: bookData.items[0]?.volumeInfo?.title,
+    author: bookData.items[0]?.volumeInfo?.authors[0],
+    pages: bookData.items[0]?.volumeInfo.pageCount,
+    curr_pub_date: bookData.items[0]?.volumeInfo.publishedDate,
+    blurb: bookData.items[0]?.volumeInfo.description,
+    genres: bookData.items[0]?.volumeInfo.categories,
+    images: {
+        bookData.items[0]?.volumeInfo.imageLinks.smallThumbnail,
+        bookData.items[0]?.volumeInfo.imageLinks.thumbnail,
+    }
+}

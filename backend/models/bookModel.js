@@ -1,3 +1,5 @@
+// models/bookModel.js
+
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema
@@ -5,7 +7,7 @@ const Schema = mongoose.Schema
 const bookSchema = new Schema({
     title: { type: String, required: true },
     author: { type: String, required: true },
-    isbn: { type: Number, required: true, unique: true },
+    isbn: { type: String, required: true, unique: true },
     pages: { type: Number, required: true },
     curr_pub_date: { type: Date },
     ori_pub_date: { type: Date },

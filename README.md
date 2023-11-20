@@ -265,7 +265,7 @@ In the data flow of the library application, the frontend will communicate with 
     * `DELETE` - Remove a book from the library.
 
 3. **Reading Progress Tracking:**
-* **Endpoint:** `/api/reading-progress`
+* **Endpoint:** `/api/:isbn/reading-progress`
 * **Description:** Tracks and manages users' reading progress for each book.
 * **Data Flow:**
     * Frontend sends requests to /api/reading-progress for updating reading progress, status, and rating.
