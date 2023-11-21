@@ -190,7 +190,6 @@ Each user has a unique profile stored in the Users collection.
 ```
 {
     _id: ObjectId, //required
-    username: String, // required
     email: String, // required
     password: String, // Hashed password - required
     first_name: String,
