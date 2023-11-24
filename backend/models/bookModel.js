@@ -17,6 +17,10 @@ const bookSchema = new Schema({
         data: Buffer, // Binary data for the image
         contentType: String // MIME type of the image
     },
+    user_id: {
+        type: String,
+        required: true
+    }
 }, { timestamps: true })
 
 module.exports = mongoose.model('Book', bookSchema)

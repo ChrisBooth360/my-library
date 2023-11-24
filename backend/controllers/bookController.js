@@ -5,7 +5,9 @@ const mongoose = require('mongoose');
 
 // Get all books
 const getBooks = async (req, res) => {
-    const books = await Book.find({}).sort({ category: 1, title: 1 });
+    const user_id = req.user._id
+    
+    const books = await Book.find({ user_id }).sort({ category: 1, title: 1 });
 
     res.status(200).json(books)
 }
@@ -73,7 +75,8 @@ const addBook = async (req, res) => {
     const { isbn, title, author, pages, curr_pub_date, blurb, genres, imageLink } = req.body
 
     try {
-        const book = await Book.create({ isbn, title, author, pages, curr_pub_date, blurb, genres, imageLink })
+        const user_id = req.user._id
+        const book = await Book.create({ isbn, title, author, pages, curr_pub_date, blurb, genres, imageLink, user_id })
         res.status(200).json(book)
     } catch (error) {
         res.status(400).json({ error: error.message })
