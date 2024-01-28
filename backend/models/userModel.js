@@ -1,3 +1,5 @@
+// models/userModel.js
+
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const validator = require('validator')
@@ -15,10 +17,12 @@ const userSchema = new Schema({
         required: true
     },
     firstName: {
-        type: String
+        type: String,
+        required: true,
     },
     lastName: {
-        type: String
+        type: String,
+        required: true,
     }
 })
 
@@ -26,11 +30,11 @@ const userSchema = new Schema({
 userSchema.statics.signup = async function(email, password, firstName, lastName) {
     
     // Validation
-    if (!email || !password){
-        throw Error('Email and password are required.')
+    if (!email || !password || !firstName || !lastName){
+        throw Error('All fields are required.')
     }
     if (!validator.isEmail(email)){
-        throw Error('Email is not valid.')   
+        throw Error('Please enter a valid email address.')   
     }
 
     const exists = await this.findOne({email})
@@ -39,7 +43,7 @@ userSchema.statics.signup = async function(email, password, firstName, lastName)
         throw Error("Email already in use.")
     }
     if (!validator.isStrongPassword(password)){
-        throw Error('Password is not strong enough')
+        throw Error('Password should be at least 8 characters long and include at least one lowercase letter, one uppercase letter, one number, and one special character.')
     }
     
     
@@ -74,4 +78,4 @@ userSchema.statics.login = async function(email, password) {
     return user
 }
 
-module.exports = mongoose.model('User', userSchema)
+module.exports = mongoose.model('User', userSchema, 'users')

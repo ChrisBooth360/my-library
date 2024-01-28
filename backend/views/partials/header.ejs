@@ -1,0 +1,24 @@
+<!--/views/partials/header.ejs-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Library</title>
+    
+</head>
+<body>
+    <nav>
+        <h1><a href="/">My Library</a></h1>
+
+        <% if (user !== undefined && user !== null) { %>
+            <!-- User is logged in -->
+            <a href="/my-library" class="btn">View Profile</a>
+            <a href="/api/user/logout" class="btn">Logout</a>
+        <% } else { %>
+            <!-- User is logged out -->
+            <a href="/api/user/login" class="btn">Login</a>
+            <a href="/api/user/signup" class="btn">Signup</a>
+        <% } %>
+
+    </nav>
