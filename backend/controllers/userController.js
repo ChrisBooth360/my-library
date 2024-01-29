@@ -7,25 +7,6 @@ const createToken = (_id) => {
     return jwt.sign({_id}, process.env.SECRET, { expiresIn: '3d' })
 }
 
-// Render the home page
-const renderHome = async (req, res) => {
-    try {
-        const user_id = req.user ? req.user._id : null;
-
-        if (user_id) {
-            let user = await User.findById(user_id).select('firstName');
-            console.log("Logged-in User Information:", user);
-            res.render('home', { user });
-        } else {
-            console.log("User is not logged in.");
-            res.render('home', { user: null });
-        }
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Internal Server Error" });
-    }
-};
-
 // Login user
 const loginUser = async (req, res) => {
     const { email, password } = req.body
@@ -36,14 +17,12 @@ const loginUser = async (req, res) => {
         // Create a token
         const token = createToken(user._id)
 
-        // Decode the token to get user information
-        const decodedToken = jwt.verify(token, process.env.SECRET)
+        // Send the token as a cookie
+        res.cookie('jwt', token, { httpOnly: true, maxAge: 3 * 24 * 60 * 60 * 1000 }); // 3 days
 
-        // Set req.user with user information
-        req.user = { _id: decodedToken._id }
+        req.user = { _id: user._id, firstName: user.firstName, email: user.email }; // Set user in the request object
 
-        // Render the index page after login
-        renderHome(req, res);
+        res.redirect('/');
     } catch (error) {
         res.status(400).json({error: error.message})
     }
@@ -62,20 +41,40 @@ const signupUser = async (req, res) => {
         // Decode the token to get user information
         const decodedToken = jwt.verify(token, process.env.SECRET)
 
-        // Set req.user with user information
-        req.user = { _id: decodedToken._id }
+        // Store the token in a cookie or local storage
+        res.cookie('jwt', token, { httpOnly: true, maxAge: 3 * 24 * 60 * 60 * 1000 }); // Example using a cookie
 
-        // Render the index page after signup
-        renderHome(req, res);
+        req.user = { _id: user._id };
+        res.redirect('/');
     } catch(error){
         res.status(400).json({error: error.message})
     }
 }
 
+// Render the home page
+const renderHome = async (req, res) => {
+    try {
+        const user_id = req.user ? req.user._id : null;
+
+        if (user_id) {
+            let user = await User.findById(user_id).select('firstName');
+            console.log("Logged-in User Information:", user);
+            res.render('my-library', { user });
+        } else {
+            console.log("User is not logged in.");
+            res.render('my-library', { user: null });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+
 // Logout user
 const logoutUser = (req, res) => {
     // Clear user information from req
     req.user = null;
+    res.clearCookie('jwt')
     res.redirect('/'); // Redirect to login page after logout
 };
 

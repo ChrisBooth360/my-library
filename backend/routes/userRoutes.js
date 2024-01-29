@@ -10,7 +10,7 @@ const { route } = require('./bookRoutes')
 const router = express.Router()
 
 // Home route
-router.get('/', async (req, res) => {
+router.get('/', requireAuth, async (req, res) => {
     try {
         // Call renderHome function and pass the user variable
         renderHome(req, res);
@@ -22,14 +22,15 @@ router.get('/', async (req, res) => {
 
 // Signup route
 router.get('/signup', (req, res) => {
-    res.render('signup') // Renders the signup.ejs view
+    res.render('signup', {error: null})  // Renders the signup.ejs view
 })
 
 router.post('/signup', async (req, res) => {
     try {
         console.log('Signup Request Body:', req.body);
         await signupUser(req, res);
-        res.redirect('/my-library'); // Redirect to profile page after successful signup
+        // After successful signup, respond with a success message or status
+        console.log({ success: true, message: 'Signup successful' });
     } catch (error) {
         res.status(400).render('signup', { error: error.message }); // Render signup page with error message
     }
@@ -37,14 +38,17 @@ router.post('/signup', async (req, res) => {
 
 // Login route
 router.get('/login', (req, res) => {
-    res.render('login')  // Renders the login.ejs view
+    res.render('login', {error: null})  // Renders the login.ejs view
 })
 
 router.post('/login', async (req, res) => {
     try {
         console.log('Login Request Body:', req.body);
         await loginUser(req, res);
-        res.redirect('/my-library'); // Redirect to profile page after successful login
+
+        // After successful login, respond with a success message or status
+        console.log({ success: true, message: 'Login successful' });
+        
     } catch (error) {
         res.status(400).render('login', { error: error.message }); // Render login page with error message
     }

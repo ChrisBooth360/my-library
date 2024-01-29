@@ -11,9 +11,9 @@
     <nav>
         <h1><a href="/">My Library</a></h1>
 
-        <% if (user !== undefined && user !== null) { %>
+        <% if (user && user._id) { %>
             <!-- User is logged in -->
-            <a href="/my-library" class="btn">View Profile</a>
+            <a href="/" class="btn">View Profile</a>
             <a href="/api/user/logout" class="btn">Logout</a>
         <% } else { %>
             <!-- User is logged out -->
@@ -22,3 +22,5 @@
         <% } %>
 
     </nav>
+
+<!--end of file-->

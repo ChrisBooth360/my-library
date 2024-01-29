@@ -1,9 +1,18 @@
-<!--/views/my-library.ejs-->
+<!--views/my-library-->
 
 <%- include('partials/header'); -%>
 
 <header>
-    <h2>Welcome User</h2>
+    <% if (user && user.firstName) { %>
+        <!-- User is logged in -->
+        <h2>Welcome <%= user.firstName %>!</h2>
+        <a href="/api/user/logout" class="btn">Logout</a>
+    <% } else { %>
+        <!-- User is not logged in -->
+        <h2>Welcome Guest!</h2>
+    <% } %>
 </header>
 
 <%- include('partials/footer'); -%>
+
+<!--end of file-->
